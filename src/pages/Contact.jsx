@@ -1,4 +1,3 @@
-// src/pages/Contact.jsx
 const Contact = () => {
     return (
       <div className="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">

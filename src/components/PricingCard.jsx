@@ -1,4 +1,3 @@
-// src/components/PricingCard.jsx
 const PricingCard = ({ plan }) => {
     return (
       <div className={`relative w-full max-w-md p-4 mx-auto mb-8 lg:mb-0 lg:w-1/3 ${plan.popular ? 'z-10' : 'z-0'}`}>

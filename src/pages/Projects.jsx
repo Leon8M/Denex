@@ -1,4 +1,3 @@
-// src/pages/Projects.jsx
 import ProjectCard from '../components/ProjectCard';
 import leo from '../assets/leo.png';
 import tonnie from '../assets/tonnie.png';

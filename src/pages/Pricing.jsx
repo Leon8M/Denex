@@ -1,4 +1,3 @@
-// src/pages/Pricing.jsx
 import PricingCard from '../components/PricingCard';
 
 const Pricing = () => {

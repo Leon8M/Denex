@@ -1,4 +1,3 @@
-// src/components/ProjectCard.jsx
 const ProjectCard = ({ project }) => {
   return (
     <div className="overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col h-full">
