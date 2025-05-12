@@ -1,6 +1,27 @@
 import React, { useState } from 'react';
 
 const Contact = () => {
+
+    const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Reset form after submission, weird error if not
+    e.target.submit();
+    setFormData({ name: '', email: '', message: '' });
+  };
     return (
       <div className="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
         <div className="container flex flex-col items-center h-full max-w-6xl mx-auto">
@@ -43,20 +64,42 @@ const Contact = () => {
               <div className="p-8 bg-white rounded-lg shadow-md">
                 <h3 className="text-xl font-bold text-gray-900">Send Us a Message</h3>
                 <form className="mt-6 space-y-6"
-                    action="https://formsubmit.co/info@denexsoftware.co.ke" >
+                    action="https://formsubmit.co/info@denexsoftware.co.ke"
+                    method="POST"
+                    onSubmit={handleSubmit} >
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="name" name="name" className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
+                    <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
                   </div>
                   
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
+                    <input 
+                    type="email" 
+                    id="email" name="email" 
+                    className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                    value={formData.email}
+                    onChange={handleChange}
+                    />
                   </div>
                   
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-                    <textarea id="message" name="message" rows="4" className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                    <textarea 
+                    id="message" 
+                    name="message" 
+                    rows="4" 
+                    className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                    value={formData.message}
+                    onChange={handleChange}
+                    ></textarea>
                   </div>
                   
                   <button type="submit" className="w-full px-6 py-3 text-lg font-bold text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
