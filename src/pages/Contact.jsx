@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 const Contact = () => {
     return (
       <div className="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
@@ -40,7 +42,8 @@ const Contact = () => {
               
               <div className="p-8 bg-white rounded-lg shadow-md">
                 <h3 className="text-xl font-bold text-gray-900">Send Us a Message</h3>
-                <form className="mt-6 space-y-6">
+                <form className="mt-6 space-y-6"
+                    action="https://formsubmit.co/info@denexsoftware.co.ke" >
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
                     <input type="text" id="name" name="name" className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
