@@ -1,6 +1,7 @@
 import ProjectCard from '../components/ProjectCard';
 import leo from '../assets/leo.png';
 import tonnie from '../assets/tonnie.png';
+import denno from '../assets/denno.png'
 import vert from '../assets/vert.png'
 
 const Projects = () => {
