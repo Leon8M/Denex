@@ -28,7 +28,15 @@ const Projects = () => {
       image: leo,
       tags: ["React", "Tailwind", "Portfolio"],
       link: "https://leonmunene.netlify.app/"
-    }
+    },
+    {
+      id: 3,
+      title: "Dennis Miring'u",
+      description: "A portfolio website for Dennis Miring'u, a Software Developer",
+      image: denno,
+      tags: ["React", "Tailwind", "Portfolio"],
+      link: "https://dennismiringu.vercel.app/"
+    },
   ];
 
   return (
