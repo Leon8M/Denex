@@ -30,7 +30,7 @@ const Projects = () => {
       link: "https://leonmunene.netlify.app/"
     },
     {
-      id: 3,
+      id: 4,
       title: "Dennis Miring'u",
       description: "A portfolio website for Dennis Miring'u, a Software Developer",
       image: denno,
