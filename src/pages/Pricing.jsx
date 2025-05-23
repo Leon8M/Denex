@@ -60,9 +60,9 @@ const Pricing = () => {
     },
     {
       id: 2,
-      name: "SEO Optimization",
-      description: "Advanced search engine optimization",
-      price: "10,000 KSH"
+      name: "Business Email Hosting",
+      description: "We create custom email addresses using your business domain",
+      price: "2,500 KSH"
     },
     {
       id: 3,
