@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
 
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', or 'error'
 
   const handleChange = (e) => {
     setFormData({
@@ -17,21 +21,45 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Reset form after submission, weird error if not
-    e.target.submit();
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+
+    emailjs.send(
+      import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+      {
+        from_name: formData.name,
+        to_name: "Denex Software",
+        from_email: formData.email,
+        to_email: 'info@denexsoftware.co.ke',
+        message: formData.message
+      },
+      import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+    )
+    .then((response) => {
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    })
+    .catch((error) => {
+      console.error('Email sending failed:', error);
+      setSubmitStatus('error');
+    })
+    .finally(() => {
+      setIsSubmitting(false);
+      // Hide status after 5 seconds
+      setTimeout(() => setSubmitStatus(null), 5000);
+    });
   };
-    return (
-      <div className="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
-        <div className="container flex flex-col items-center h-full max-w-6xl mx-auto">
-          <h2 className="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">Get in Touch</h2>
-          <h3 className="w-full max-w-2xl px-5 mt-2 text-2xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">
-            Let's Build Something Great
-          </h3>
-  
-          <div className="w-full max-w-4xl mt-16">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+
+  return (
+    <div className="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
+      <div className="container flex flex-col items-center h-full max-w-6xl mx-auto">
+        <h2 className="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">Get in Touch</h2>
+        <h3 className="w-full max-w-2xl px-5 mt-2 text-2xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">
+          Let's Build Something Great
+        </h3>
+
+        <div className="w-full max-w-4xl mt-16">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <div className="p-8 bg-gray-50 rounded-lg">
                 <h3 className="text-xl font-bold text-gray-900">Contact Information</h3>
                 <p className="mt-4 text-gray-600">Fill out the form or reach out directly:</p>
@@ -62,56 +90,76 @@ const Contact = () => {
               </div>
               
               <div className="p-8 bg-white rounded-lg shadow-md">
-                <h3 className="text-xl font-bold text-gray-900">Send Us a Message</h3>
-                <form className="mt-6 space-y-6"
-                    action="https://formsubmit.co/info@denexsoftware.co.ke"
-                    method="POST"
-                    onSubmit={handleSubmit} >
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                    <input 
+              <h3 className="text-xl font-bold text-gray-900">Send Us a Message</h3>
+              
+              {/* Status message */}
+              {submitStatus === 'success' && (
+                <div className="p-4 mb-6 text-green-800 bg-green-100 rounded-md">
+                  Message sent successfully! We'll get back to you soon.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="p-4 mb-6 text-red-800 bg-red-100 rounded-md">
+                  Failed to send message. Please try again or contact us directly.
+                </div>
+              )}
+
+              <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                  <input 
                     type="text" 
                     id="name" 
                     name="name" 
+                    required
                     className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     value={formData.name}
                     onChange={handleChange}
                   />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                    <input 
+                </div>
+                
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                  <input 
                     type="email" 
-                    id="email" name="email" 
+                    id="email" 
+                    name="email" 
+                    required
                     className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     value={formData.email}
                     onChange={handleChange}
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-                    <textarea 
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                  <textarea 
                     id="message" 
                     name="message" 
                     rows="4" 
+                    required
                     className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     value={formData.message}
                     onChange={handleChange}
-                    ></textarea>
-                  </div>
-                  
-                  <button type="submit" className="w-full px-6 py-3 text-lg font-bold text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
-                    Send Message
-                  </button>
-                </form>
-              </div>
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className={`w-full px-6 py-3 text-lg font-bold text-white bg-indigo-600 rounded-md hover:bg-indigo-700 ${
+                    isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                  }`}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    );
-  };
-  
-  export default Contact;
+    </div>
+  );
+};
+
+export default Contact;
