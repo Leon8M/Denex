@@ -4,18 +4,14 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        indigo: {
-          600: '#3b82f6',
-          700: '#2563eb',
-        },
-      },
-      container: {
-        center: true,
-        padding: '1rem',
-      },
-    },
-  },
+  extend: {
+    colors: {
+      primary: '#0F172A',
+      accent: '#6366F1',
+      text: '#F8FAFC',
+      muted: '#94A3B8',
+    }
+  }
+},
   plugins: [],
 }
