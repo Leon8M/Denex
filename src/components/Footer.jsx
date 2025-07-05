@@ -1,60 +1,61 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import logoFull from '/denex.png'; // Make sure this path is correct
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import logo from "/logo.png";
 
 const Footer = () => {
   return (
     <motion.footer
-      className="px-4 pt-12 pb-8 text-white bg-gray-900 border-t border-gray-800"
+      className="bg-[#111] border-t border-[#222] text-[#EAEAEA] px-6 py-12"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.3 }}
+      transition={{ duration: 0.6 }}
     >
-      <div className="container flex flex-col justify-between max-w-6xl px-4 mx-auto overflow-hidden lg:flex-row">
-        <div className="w-full pl-12 mr-4 text-left lg:w-1/4 sm:text-center sm:pl-0 lg:text-left">
-          <Link to="/" className="flex justify-start block text-left sm:text-center lg:text-left sm:justify-center lg:justify-start">
-            <span className="flex items-center">
-              <img src={logoFull} alt="Denex Software Logo" className="h-10 w-auto object-contain brightness-0 invert" />
-            </span>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Logo and About */}
+        <div>
+          <Link to="/" className="flex items-center gap-3 mb-4">
+            <img src={logo} alt="Denex Logo" className="w-10 h-10" />
+            <span className="text-lg font-semibold">Denex Software</span>
           </Link>
-          <p className="mt-6 mr-4 text-base text-gray-400">
+          <p className="text-sm text-[#aaa]">
             Affordable, fast software solutions for businesses in Kenya.
           </p>
         </div>
 
-        <div className="block w-full pl-10 mt-6 text-sm lg:w-3/4 sm:flex lg:mt-0">
-          <ul className="flex flex-col w-full p-0 font-medium text-left text-gray-300 list-none">
-            <li className="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-white uppercase md:mt-0">Product</li>
-            <li><Link to="/pricing" className="inline-block px-3 py-2 text-gray-400 no-underline hover:text-blue-400 transition-colors duration-200">Pricing</Link></li>
-            <li><Link to="/projects" className="inline-block px-3 py-2 text-gray-400 no-underline hover:text-blue-400 transition-colors duration-200">Projects</Link></li>
-          </ul>
+        {/* Navigation */}
+        <div className="grid grid-cols-2 gap-6">
+          <div>
+            <h4 className="mb-2 font-semibold uppercase text-sm text-[#00F5A0]">Product</h4>
+            <ul className="space-y-1 text-sm text-[#ccc]">
+              <li><Link to="/pricing" className="hover:text-[#00F5A0] transition">Pricing</Link></li>
+              <li><Link to="/projects" className="hover:text-[#00F5A0] transition">Projects</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="mb-2 font-semibold uppercase text-sm text-[#00F5A0]">Company</h4>
+            <ul className="space-y-1 text-sm text-[#ccc]">
+              <li><Link to="/contact" className="hover:text-[#00F5A0] transition">Contact</Link></li>
+              <li><Link to="/about" className="hover:text-[#00F5A0] transition">About</Link></li>
+            </ul>
+          </div>
+        </div>
 
-          <ul className="flex flex-col w-full p-0 font-medium text-left text-gray-300 list-none">
-            <li className="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-white uppercase md:mt-0">Company</li>
-            <li><Link to="/contact" className="inline-block px-3 py-2 text-gray-400 no-underline hover:text-blue-400 transition-colors duration-200">Contact</Link></li>
-            <li><Link to="/about" className="inline-block px-3 py-2 text-gray-400 no-underline hover:text-blue-400 transition-colors duration-200">About</Link></li>
-          </ul>
-
-          <div className="flex flex-col w-full text-gray-300">
-            <div className="inline-block px-3 py-2 mt-5 font-bold text-white uppercase md:mt-0">Follow Us</div>
-            <div className="flex justify-start pl-4 mt-2">
-              <a href="https://x.com/denexsoftware" target="_blank" rel="noopener noreferrer" className="flex items-center block mr-6 text-gray-400 no-underline hover:text-blue-400 transition-colors duration-200">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23.954 4.569a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.061a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z" />
-                </svg>
-              </a>
-              <a href="https://github.com/denexsoftware" target="_blank" rel="noopener noreferrer" className="flex items-center block text-gray-400 no-underline hover:text-blue-400 transition-colors duration-200">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                </svg>
-              </a>
-            </div>
+        {/* Socials */}
+        <div>
+          <h4 className="mb-2 font-semibold uppercase text-sm text-[#00F5A0]">Follow Us</h4>
+          <div className="flex gap-4">
+            <a href="https://x.com/denexsoftware" target="_blank" rel="noreferrer" className="hover:text-[#00F5A0]">
+              Twitter
+            </a>
+            <a href="https://github.com/denexsoftware" target="_blank" rel="noreferrer" className="hover:text-[#00F5A0]">
+              GitHub
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="pt-4 pt-6 mt-10 text-center text-gray-500 border-t border-gray-800">
-        © {new Date().getFullYear()} Denex Software. All rights reserved.
+      <div className="mt-10 border-t border-[#222] pt-4 text-center text-sm text-[#777]">
+        &copy; {new Date().getFullYear()} Denex Software. All rights reserved.
       </div>
     </motion.footer>
   );

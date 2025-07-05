@@ -1,12 +1,13 @@
 import PricingCard from '../components/PricingCard';
 import { motion } from 'framer-motion';
+import { Wrench, Mail, PenTool } from 'lucide-react'; // Icons for Add-Ons
 
 const Pricing = () => {
   const pricingPlans = [
     {
       id: 1,
       name: "Basic Website",
-      price: "11,000 KSH",
+      price: "KSH 11,000",
       description: "Perfect for simple, single-page websites",
       features: [
         "1 Page Website",
@@ -21,7 +22,7 @@ const Pricing = () => {
     {
       id: 2,
       name: "Business Website",
-      price: "25,000 KSH",
+      price: "KSH 25,000",
       description: "Ideal for small businesses needing multiple pages",
       features: [
         "Up to 5 Pages",
@@ -37,7 +38,7 @@ const Pricing = () => {
     {
       id: 3,
       name: "Fullstack App",
-      price: "50,000 KSH",
+      price: "KSH 50,000",
       description: "Complete web application with backend functionality",
       features: [
         "Custom Pages",
@@ -57,19 +58,22 @@ const Pricing = () => {
       id: 1,
       name: "Website Management",
       description: "Monthly updates, backups and maintenance",
-      price: "5,000 KSH/month"
+      price: "KSH 5,000/month",
+      icon: <Wrench size={24} className="text-[#00F5A0]" />
     },
     {
       id: 2,
       name: "Business Email Hosting",
-      description: "We create custom email addresses using your business domain",
-      price: "2,500 KSH"
+      description: "Create professional emails using your domain",
+      price: "KSH 2,500",
+      icon: <Mail size={24} className="text-[#00F5A0]" />
     },
     {
       id: 3,
       name: "Content Creation",
-      description: "Professional copywriting and images",
-      price: "8,000 KSH"
+      description: "Professional copywriting and visuals",
+      price: "KSH 8,000",
+      icon: <PenTool size={24} className="text-[#00F5A0]" />
     }
   ];
 
@@ -83,78 +87,79 @@ const Pricing = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
-  const addOnCardVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
-    hover: { scale: 1.03, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)" },
-  };
-
-
   return (
     <motion.div
-      className="relative px-8 py-10 bg-white border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0"
+      className="relative px-8 py-20 bg-[#111111] text-[#EAEAEA] border-t border-neutral-800"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <div className="container flex flex-col items-center h-full max-w-6xl mx-auto">
+      <div className="container max-w-6xl mx-auto flex flex-col items-center text-center">
         <motion.h2
-          className="my-5 text-lg font-semibold tracking-tight text-[#007BFF] uppercase"
+          className="text-sm font-semibold uppercase tracking-wider text-[#00F5A0]"
           variants={itemVariants}
         >
-          Our Pricing
+          Pricing
         </motion.h2>
         <motion.h3
-          className="w-full max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0"
+          className="mt-2 text-4xl font-black tracking-tight sm:text-6xl"
           variants={itemVariants}
         >
-          Affordable, Fast Software Solutions
+          Premium. Affordable. Transparent.
         </motion.h3>
+        <motion.p
+          className="mt-6 max-w-xl text-lg text-[#ccc]"
+          variants={itemVariants}
+        >
+          Whether you're starting small or scaling fast, we have a package for you.
+        </motion.p>
 
-        <div className="flex flex-col w-full mt-16 lg:flex-row gap-8"> {/* Added gap-8 */}
+        <div className="flex flex-col w-full gap-10 mt-16 lg:flex-row">
           {pricingPlans.map(plan => (
             <PricingCard key={plan.id} plan={plan} />
           ))}
         </div>
 
         <motion.div
-          className="w-full max-w-4xl mt-20"
+          className="w-full max-w-5xl mt-24"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ staggerChildren: 0.1 }}
         >
-          <motion.h3
-            className="mb-8 text-2xl font-bold text-center text-gray-800"
+          <motion.h4
+            className="mb-8 text-2xl font-bold text-[#EAEAEA]"
             variants={itemVariants}
           >
             Add-On Services
-          </motion.h3>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          </motion.h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {addOns.map(addOn => (
               <motion.div
                 key={addOn.id}
-                className="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-                variants={addOnCardVariants}
-                whileHover="hover"
+                className="flex flex-col items-start p-6 bg-[#1a1a1a] rounded-lg border border-[#222] hover:shadow-lg transition-all duration-300"
+                variants={itemVariants}
+                whileHover={{ scale: 1.03 }}
               >
-                <h4 className="text-lg font-bold text-gray-900">{addOn.name}</h4>
-                <p className="mt-2 text-gray-600">{addOn.description}</p>
-                <p className="mt-4 font-medium text-[#007BFF]">{addOn.price}</p>
+                <div className="mb-4">{addOn.icon}</div>
+                <h5 className="text-lg font-semibold mb-1 text-[#EAEAEA]">{addOn.name}</h5>
+                <p className="text-[#bbb] text-sm">{addOn.description}</p>
+                <p className="mt-4 font-bold text-[#00F5A0]">{addOn.price}</p>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
         <motion.div
-          className="w-full max-w-2xl mt-20 text-center"
+          className="mt-20 text-center"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
           transition={{ delay: 0.3 }}
         >
-          <p className="text-lg text-gray-600">Need something custom? Contact us to discuss your project requirements.</p>
-          <a href="/contact" className="inline-block px-8 py-4 mt-6 text-lg font-bold text-white bg-[#007BFF] rounded-md hover:bg-[#0056B3] transition-all duration-300 shadow-md hover:shadow-lg">
+          <p className="text-md text-[#aaa]">Looking for something custom?</p>
+          <a
+            href="/contact"
+            className="inline-block mt-4 px-8 py-4 bg-[#00F5A0] text-[#111] font-bold text-lg rounded-md hover:bg-[#00e58c] transition-all duration-300 shadow-lg"
+          >
             Contact Us
           </a>
         </motion.div>

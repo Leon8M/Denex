@@ -1,54 +1,63 @@
+import Tilt from 'react-parallax-tilt';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const ProjectCard = ({ project }) => {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    hover: { scale: 1.02, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)" },
-  };
-
   return (
-    <motion.div
-      className="overflow-hidden bg-white rounded-lg shadow-md flex flex-col h-full cursor-pointer"
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      whileHover="hover"
-      viewport={{ once: true, amount: 0.2 }}
+    <Tilt
+      glareEnable={true}
+      glareMaxOpacity={0.2}
+      scale={1.02}
+      transitionSpeed={800}
+      tiltMaxAngleX={6}
+      tiltMaxAngleY={6}
+      className="rounded-xl bg-[#1a1a1a] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer border border-[#2a2a2a]"
     >
-      <Link to={`/projects/${project.id}`}>
-        <img className="object-cover w-full h-48" src={project.image} alt={project.title} />
-        <div className="flex flex-col justify-between flex-grow p-6">
-          <div>
-            <h3 className="mb-2 text-xl font-bold text-gray-900">{project.title}</h3>
-            <p className="text-base text-gray-600">{project.description}</p>
-            <div className="flex flex-wrap mt-4">
-              {project.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 mb-2 mr-2 text-sm font-medium text-[#007BFF] bg-[#E0F2FE] rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="flex flex-col h-full"
+      >
+        <Link to={`/projects/${project.id}`} className="h-full flex flex-col">
+          <img
+            className="object-cover w-full h-48 sm:h-52 lg:h-56"
+            src={project.image}
+            alt={project.title}
+          />
+          <div className="flex-grow p-5 sm:p-6 flex flex-col justify-between text-[#EAEAEA]">
+            <div>
+              <h3 className="mb-2 text-xl font-bold text-white">{project.title}</h3>
+              <p className="text-gray-400 text-sm">{project.description}</p>
 
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-block text-sm font-semibold text-[#007BFF] hover:underline transition-colors duration-200"
-              onClick={(e) => e.stopPropagation()} // Prevent navigating to project details when clicking external link
-            >
-              Visit Website →
-            </a>
-          )}
-        </div>
-      </Link>
-    </motion.div>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="text-xs px-3 py-1 font-medium text-[#00F5A0] bg-[#1f1f1f] border border-[#00F5A0]/30 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 text-sm font-semibold text-[#00F5A0] hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Visit Website →
+              </a>
+            )}
+          </div>
+        </Link>
+      </motion.div>
+    </Tilt>
   );
 };
 
