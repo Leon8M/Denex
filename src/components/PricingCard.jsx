@@ -58,7 +58,7 @@ const PricingCard = ({ plan }) => {
         <div className="w-full text-center">
           <h3 className="text-2xl font-bold text-[#EAEAEA]">{plan.name}</h3>
           <h4 className="py-4 text-4xl font-extrabold text-[#00F5A0]">{plan.price}</h4>
-          <p className="text-[#BBBBBB] text-base">{plan.description}</p>
+          <p className="text-white text-base">{plan.description}</p>
         </div>
 
         <div className="w-full mt-6">
@@ -73,7 +73,7 @@ const PricingCard = ({ plan }) => {
                 <motion.div variants={iconPulse} animate="animate">
                   <CheckCircle className="text-[#00F5A0]" size={20} />
                 </motion.div>
-                <span className="text-[#DDDDDD] text-base">{feature}</span>
+                <span className="text-white text-base">{feature}</span>
               </motion.li>
             ))}
           </ul>
