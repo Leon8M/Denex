@@ -81,7 +81,7 @@ export const projectsData = [
     }
   },
   {
-    id: 3,
+    id: 4,
     title: "AI LearnHub",
     description: "AI LearnHub is a platform for users to use AI to generate courses and learn from them.",
     image: learn,
@@ -104,7 +104,7 @@ export const projectsData = [
     }
   },
   {
-    id: 4,
+    id: 5,
     title: "Dennis Miring'u",
     description: "A portfolio website for Dennis Miring'u, a Software Developer, featuring his work and contact information.",
     image: denno,
