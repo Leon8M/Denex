@@ -12,7 +12,7 @@ import learn2 from '../assets/learn2.png'; // Additional mockup image for AI Lea
 export const projectsData = [
   {
     id: 1,
-    title: "Vertical Solutions",
+    title: "Vertical Techniques",
     description: "A Company website for Vertical techniques Ltd; Cost-Efficient and Safe High-Altitude Cleaning Solutions. Features a modern, responsive design with clear service offerings.",
     image: verticalMock,
     tags: ["React", "Tailwind CSS", "Business", "SEO Optimized"],
