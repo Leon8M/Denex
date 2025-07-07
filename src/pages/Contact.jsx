@@ -59,7 +59,7 @@ const Contact = () => {
     >
       {/* ✅ WhatsApp Floating Button */}
       <a
-        href="https://wa.me/254100321690?text=Hello%20Denex%2C%20I%27m%20interested%20in%20building%20a%20website%20or%20app."
+        href="https://wa.me/254718135935?text=Hello%20Denex%2C%20I%27m%20interested%20in%20building%20a%20website%20or%20app."
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-[#00F5A0] text-black font-bold px-4 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
@@ -104,7 +104,7 @@ const Contact = () => {
                     <Phone className="text-[#00F5A0]" />
                     <div>
                       <div>+254 100 321 690</div>
-                      <div>+254 791 567 452</div>
+                      <div>+254 718 135 935</div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
